@@ -1,17 +1,3 @@
-AddCSLuaFile("cl_spectator_deathmatch.lua")
-AddCSLuaFile("sh_spectator_deathmatch.lua")
-AddCSLuaFile("specdm_config.lua")
-AddCSLuaFile("cl_specdm_hud.lua")
-AddCSLuaFile("vgui/spec_dm_loadout.lua")
-AddCSLuaFile("cl_stats.lua")
-AddCSLuaFile("specdm_von.lua")
-AddCSLuaFile("cl_quakesounds.lua")
-
-include("sh_spectator_deathmatch.lua")
-include("sv_specdm_overrides.lua")
-include("sv_stats.lua")
-include("sv_quakesounds.lua")
-
 util.AddNetworkString("SpecDM_Error")
 util.AddNetworkString("SpecDM_Ghost")
 util.AddNetworkString("SpecDM_Autoswitch")

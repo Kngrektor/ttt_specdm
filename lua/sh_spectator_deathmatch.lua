@@ -1,6 +1,3 @@
-include("specdm_config.lua")
-include("specdm_von.lua")
-
 if SpecDM.AutoIncludeWeapons then
 	SpecDM.Ghost_weapons.primary = {}
 	SpecDM.Ghost_weapons.secondary = {}

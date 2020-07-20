@@ -1,12 +1,22 @@
--- TTT Spectator Deathmatch Copyright (C) 2015-2018 Ismail Ouazzany
--- This program comes with ABSOLUTELY NO WARRANTY; for details view LICENSE.
+SpecDM = SpecDM or {}
 
--- GitHub Repository:
---		https://github.com/Tommy228/TTT_Spectator_Deathmatch
-SpecDM = {}
+local CL = SERVER and AddCSLuaFile or include
+local SV = SERVER and include or function() end
+local function SH(file) CL(file) SV(file) end
 
-if SERVER then
-	include("sv_spectator_deathmatch.lua")
-else
-	include("cl_spectator_deathmatch.lua")
-end
+SH("specdm_config.lua")
+SH("specdm_von.lua")
+
+CL("cl_spectator_deathmatch.lua")
+SV("sv_spectator_deathmatch.lua")
+SH("sh_spectator_deathmatch.lua")
+
+CL("cl_specdm_hud.lua")
+CL("vgui/spec_dm_loadout.lua")
+CL("cl_stats.lua")
+
+SV("sv_specdm_overrides.lua")
+SV("sv_stats.lua")
+
+CL("cl_quakesounds.lua")
+SV("sv_quakesounds.lua")
