@@ -6,7 +6,7 @@ SpecDM.Commands = {
 }
 
 -- Minimum time before ghosts can respawn. Set to 0 for autorespawn
-SpecDM.RespawnTime = 4
+SpecDM.RespawnTime = 2
 
 -- Period after the ghosts are automatically respawned. Set to -1 to disable this behavior
 SpecDM.AutomaticRespawnTime = 0

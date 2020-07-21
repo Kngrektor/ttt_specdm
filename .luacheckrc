@@ -1,8 +1,14 @@
 
 max_line_length = 128
-std = "luajit+gmod"
+std = "luajit+gmod+specdm"
 ignore = {
 	"212", -- unused argument
+}
+
+-- SpecDM
+stds.specdm = {}
+stds.specdm.globals = {
+	"SpecDM"
 }
 
 -- helix

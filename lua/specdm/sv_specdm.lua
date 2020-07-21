@@ -61,22 +61,6 @@ function SpecDM:RelationShip(victim)
 	end
 end
 
-function meta:GiveGhostWeapons()
-	if not SpecDM.LoadoutEnabled or not self.ghost_primary or self.ghost_primary == "random" or not table.HasValue(SpecDM.Ghost_weapons.primary, self.ghost_primary) then
-		self:Give(SpecDM.Ghost_weapons.primary[math.random(#SpecDM.Ghost_weapons.primary)])
-	else
-		self:Give(self.ghost_primary)
-	end
-
-	if not SpecDM.LoadoutEnabled or not self.ghost_secondary or self.ghost_secondary == "random" or not table.HasValue(SpecDM.Ghost_weapons.secondary, self.ghost_secondary) then
-		self:Give(SpecDM.Ghost_weapons.secondary[math.random(#SpecDM.Ghost_weapons.secondary)])
-	else
-		self:Give(self.ghost_secondary)
-	end
-
-	self:Give("weapon_ghost_crowbar")
-end
-
 function meta:ManageGhost(spawn, silent)
 	local silent = silent or false
 
@@ -84,9 +68,6 @@ function meta:ManageGhost(spawn, silent)
 
 	if spawn then
 		self:Spawn()
-		self:GiveGhostWeapons()
-
-		SpecDM:RelationShip(self)
 	else
 		self:KillSilent()
 		self:Spectate(OBS_MODE_ROAMING)
