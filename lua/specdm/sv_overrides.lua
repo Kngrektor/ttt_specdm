@@ -1,6 +1,6 @@
 local old_concommandAdd = concommand.Add
 concommand.Add = function(command, func, ...)
-	if command == "ttt_spec_use" or command == "ttt_dropweapon" then
+	if command == "ttt_spec_use" then
 		local old_func = func
 
 		func = function(ply, cmd, arg)
@@ -12,55 +12,6 @@ concommand.Add = function(command, func, ...)
 
 	return old_concommandAdd(command, func, ...)
 end
-
-hook.Add("PlayerTraceAttack", "PlayerTraceAttack_SpecDM", function(ply, dmginfo, dir, trace)
-	if ply:IsGhost() then
-		local _dmginfo = DamageInfo()
-		_dmginfo:SetDamage(dmginfo:GetDamage())
-		_dmginfo:SetDamagePosition(dmginfo:GetDamagePosition())
-		_dmginfo:SetReportedPosition(dmginfo:GetReportedPosition())
-
-		if IsValid(dmginfo:GetAttacker()) then
-			_dmginfo:SetAttacker(dmginfo:GetAttacker())
-		end
-
-		if IsValid(dmginfo:GetInflictor()) then
-			_dmginfo:SetInflictor(dmginfo:GetInflictor())
-		end
-
-		ply.was_headshot = false
-
-		local hg = trace.HitGroup
-		local hs = hg == HITGROUP_HEAD
-
-		if hs then
-			ply.was_headshot = true
-
-			local wep = util.WeaponFromDamage(_dmginfo)
-
-			if IsValid(wep) then
-				local s = wep:GetHeadshotMultiplier(ply, _dmginfo) or 2
-				if s < 1 then
-                    s = 1
-                end
-
-				if hit then
-                    s = s-0.2
-                end
-
-				_dmginfo:ScaleDamage(s)
-			end
-		elseif hg == HITGROUP_LEFTARM or hg == HITGROUP_RIGHTARM or hg == HITGROUP_LEFTLEG or hg == HITGROUP_RIGHTLEG or hg == HITGROUP_GEAR then
-			_dmginfo:ScaleDamage(0.55)
-		end
-
-		if not hit or hs then
-			ply:TakeDamageInfo(_dmginfo)
-		end
-
-		return true
-	end
-end)
 
 hook.Add("PlayerSpawn", "PlayerSpawn_SpecDM", function(ply)
 	if ply:IsGhost() then
